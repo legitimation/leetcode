@@ -1,0 +1,6 @@
+class Solution:
+    def longestSubstring(self, s: str, k: int) -> int:
+        for e in set(s):
+            if s.count(e) < k:
+                return (max(self.longestSubstring(sub, k) for sub in s.split(e)))
+        return len(s)
