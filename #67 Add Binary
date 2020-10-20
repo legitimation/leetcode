@@ -1,0 +1,18 @@
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        s = str(int(a) + int(b))
+        a = []
+        for i in range(len(s)):
+            a.append(int(s[i]))
+        for j in range(len(a) - 1):
+            if a[-(j+1)] >= 2:
+                a[-(j+1)] -= 2
+                a[-(j+2)] += 1
+        if a[0] >= 2:
+            a[0] -= 2
+            a.insert(0, 1)
+        g = ""
+        for i in range(len(a)):
+            g += str(a[i])
+        return g
+                
