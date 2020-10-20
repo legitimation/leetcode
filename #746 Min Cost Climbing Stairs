@@ -1,0 +1,19 @@
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        if len(cost) == 0:
+            return 0
+        elif len(cost) == 1:
+            return cost[0]
+        temp = [cost[-1], cost[-2]]
+        for i in range(len(cost) - 2):
+            temp.append(min(temp[i], temp[i+1]) + cost[-(i+3)])
+        return min(temp[-1], temp[-2])
+        
+        
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        a, b = 0, 0
+        for elements in cost[::-1]:
+            a, b = elements + min(a,b), a
+        return min(a, b)
+
