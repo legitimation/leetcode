@@ -1,0 +1,24 @@
+class Solution:
+    def countAndSay(self, n: int) -> str:
+        if n == 1:
+            return "1"
+        elif n == 2:
+            return "11"
+        s = '11'
+        for _ in range(n-2):
+            news = ''
+            count = 1
+            for j in range(len(s)-1):
+                cur, nex = s[j], s[j+1]
+                if cur == nex:
+                    count += 1
+                else:
+                    news += (str(count))
+                    news += (cur)
+                    count = 1
+                if j == len(s)-2:
+                    news += (str(count))
+                    news += (nex)
+            s = news
+        return s   
+            
