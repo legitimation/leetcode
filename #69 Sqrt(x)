@@ -1,0 +1,25 @@
+# using math sqrt function 
+
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        return int(math.sqrt(x))
+        
+
+# simplest way, quite straight forward but seems slow
+
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        count = 1
+        while count * count <= x:
+            count += 1
+        return (count - 1)
+        
+        
+# so called Newton's method (explained in discussion forum) slightly better
+
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        r = x
+        while r*r > x:
+            r = (r + x/r) // 2
+        return int(r)
