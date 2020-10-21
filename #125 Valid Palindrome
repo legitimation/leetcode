@@ -1,0 +1,10 @@
+#key point isalnum library function, whether value is alphabet or number
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        news = ""
+        for element in s.lower():
+            if element.isalnum():
+                news += element
+        return news == news[::-1]
+    
