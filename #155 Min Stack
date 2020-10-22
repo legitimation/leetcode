@@ -1,0 +1,26 @@
+# Stack including getmin function --> takeaway is that too append tuple form during 'push' function to constantly 
+# update the min value if it changes during the 'push' step not by finding min val by using pop until empty
+
+class MinStack:    
+    def __init__(self):
+        self.stack = []
+        
+    def push(self, x: int) -> None:
+        newmin = self.getMin()
+        if newmin == None or x < newmin:
+            newmin = x
+        self.stack.append((x, newmin));
+ 
+    def pop(self) -> None:
+        if self.stack:
+            self.stack.pop()
+    
+    def top(self) -> int:
+        if self.stack:
+            return self.stack[-1][0]
+        else:
+            return 0
+
+    def getMin(self) -> int:
+        if self.stack:
+            return self.stack[-1][1]
