@@ -1,0 +1,32 @@
+Brute force method
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        while headA:
+            B = headB
+            while B:
+                if headA is B:
+                    return headA
+                B = B.next
+            headA = headA.next
+        return
+
+
+using two pointers method
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        ptrA = headA
+        ptrB = headB
+
+        while ptrA is not ptrB:
+            ptrA = headB if ptrA is None else ptrA.next
+            ptrB = headA if ptrB is None else ptrB.next
+
+        return ptrA
