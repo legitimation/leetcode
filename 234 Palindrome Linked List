@@ -34,3 +34,26 @@ class Solution:
             head = head.next
         return vals == vals[::-1]
 
+# Use two pointers, one that moves two blocks, one that moves one, by using this find the mid point of the linked list, then flip the latter half (reverse linked list Q for ref)
+# then compare whether the latter half equals the first half by comparison
+# Highly impressive.
+
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        fast = slow = head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+        prev = None
+        while slow:
+            nxt = slow.next
+            slow.next = prev
+            prev = slow
+            slow = nxt
+        while prev and head:
+            if prev.val != head.val:
+                return False
+            prev, head = prev.next, head.next
+        return True
+
+
