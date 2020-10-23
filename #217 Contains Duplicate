@@ -1,0 +1,24 @@
+# USING SORT (NLOGN)
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        nums.sort()
+        for i in range(len(nums) - 1):
+            if nums[i] == nums[i+1]:
+                return True
+        return False
+
+# USING SETS
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        return len(nums) != len(set(nums))
+
+#USING HASH MAP
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        a = set()
+        for e in nums:
+            if e in a:
+                return True
+            else:
+                a.add(e)
+        return False
