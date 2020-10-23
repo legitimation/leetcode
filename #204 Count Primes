@@ -1,0 +1,32 @@
+class Solution:
+    def countPrimes(self, n: int) -> int:
+        if n == 0:
+            return 0
+        elif n == 1:
+            return 0
+        dic = []
+        for i in range(2, n):
+            count = 0
+            for e in dic:
+                if e > math.sqrt(i):
+                    break
+                if i % e == 0:
+                    count += 1
+                    break
+            if count == 1:
+                continue
+            dic.append(i)
+        return len(dic)
+
+
+class Solution:
+    def countPrimes(self, n: int) -> int:
+        if n < 3:
+            return 0
+        p = [True] * n
+        p[0] = p[1] = False
+        for i in range(2, int(n ** 0.5) + 1):
+            if p[i]:
+                for j in range(i * i, n, i):
+                    p[j] = False
+        return (sum(p))
