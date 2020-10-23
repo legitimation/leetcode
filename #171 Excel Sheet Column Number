@@ -1,0 +1,9 @@
+class Solution:
+    def titleToNumber(self, s: str) -> int:
+        count = 0
+        sss = 0
+        for e in s:
+            g = ord(e)-ord('A')+1
+            sss = sss + (26 ** (len(s) - 1 - count)) * g
+            count += 1
+        return sss
