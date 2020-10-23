@@ -1,0 +1,14 @@
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        dic = []
+        while n != 1:
+            s = str(n)
+            val = 0
+            for e in s:
+                val += int(e) ** 2
+            n = val
+            if val in dic:
+                return False
+            else:
+                dic.append(val)
+        return True
