@@ -1,0 +1,34 @@
+## self done, but inefficient, time limit exceeded error.
+
+class Solution:
+    def matrixBlockSum(self, mat: List[List[int]], K: int) -> List[List[int]]:
+        i = len(mat)
+        j = len(mat[0])
+        fin = [([0] * j) for i in range(i)]
+        set1 = set((x,y) for x in range(i) for y in range(j))
+        print(set1, len(set1))
+        for x in range(i):
+            for y in range(j):
+                set2 = [(a,b) for a in range(x - K, x + K + 1) for b in range(y - K, y + K + 1)]
+                for e in set2:
+                    if e in set1:
+                        c, d = e
+                        fin[x][y] += mat[c][d] 
+        return fin
+
+# using sum grid. difficult.
+
+class Solution:
+    def matrixBlockSum(self, mat: List[List[int]], K: int) -> List[List[int]]:
+        m = len(mat)
+        n = len(mat[0])
+        ans = [[0] * n for _ in range(m)]
+        sumgrid = [[0] * (n + 1) for _ in range(m+1)]
+        for i in range(m):
+            for j in range(n):
+                sumgrid[i+1][j+1] = sumgrid[i+1][j] + sumgrid[i][j+1] -sumgrid[i][j] + mat[i][j]
+        for i in range(m):
+            for j in range(n):
+                a1, b1, a2, b2 = max(0, i - K), max(0, j - K),  min(m, i+K+1), min(n, j+K+1)
+                ans[i][j] = sumgrid[a2][b2] - sumgrid[a2][b1] - sumgrid[a1][b2] + sumgrid[a1][b1]
+        return ans1
