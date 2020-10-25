@@ -1,0 +1,36 @@
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        dic = {}
+        out = []
+        for e in s:
+            dic[e] = dic.get(e, 0) + 1
+        for item in dic:
+            for i in range (len(s)):
+                if dic[item] == 1 and s[i] == item:
+                    out.append(i)
+        out.sort()
+        if not out:
+            return -1
+        return (out[0])
+        
+slight improvements
+
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        dic = {}
+        out = []
+        for e in s:
+            dic[e] = dic.get(e, 0) + 1
+        for item in dic:
+            if dic[item] == 1:
+                out.append(s.index(item))
+        if not out:
+            return -1
+        return (min(out))
+
+close to optimal (99% beating cocde) 
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        letters='abcdefghijklmnopqrstuvwxyz'
+        index=[s.index(l) for l in letters if s.count(l) == 1]
+        return min(index) if len(index) > 0 else -1
