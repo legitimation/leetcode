@@ -1,0 +1,32 @@
+# USING DP, DFS SEERATIVELY
+# BOTH NOT MY ORIGINAL CODING, 
+
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        dp = [[]  for i in range (n+1)]
+        dp[0].append("")
+        for i in range(n+1):
+            for j in range(i):
+                dp[i] += ["(" + x + ")" + y for x in dp[j] for y in dp[i-j-1]]
+        return dp[n]
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        if not n:
+            return []
+        ans = []
+        left, right = n, n
+        self.dfs(left, right, ans, "")
+        return ans
+        
+    def dfs(self, left, right, ans, string):
+        if right < left:
+            return
+        if not left and not right:
+            ans.append(string)
+        if left:
+            self.dfs(left - 1, right, ans, string + "(")
+        if right:
+            self.dfs(left, right - 1, ans, string + ")")
+        
