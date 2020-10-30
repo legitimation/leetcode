@@ -1,0 +1,36 @@
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        n = len(matrix) - 1
+        a, b = 0, 0
+        count = 0
+        while n >= 1:
+            count += 1
+            con = []
+            for _ in range(n):
+                con.append(matrix[a][b])
+                b += 1
+            for _ in range(n):
+                con.append(matrix[a][b])
+                matrix[a][b] = con[0]
+                del con[0]
+                a += 1
+            for _ in range(n):
+                con.append(matrix[a][b])
+                matrix[a][b] = con[0]
+                del con[0]
+                b -= 1
+            for _ in range(n):
+                con.append(matrix[a][b])
+                matrix[a][b] = con[0]
+                del con[0]
+                a -= 1
+            for _ in range(n):
+                matrix[a][b] = con[0]
+                del con[0]
+                b += 1
+            a, b = count, count
+            #print(matrix, n, count)
+            n -= 2
