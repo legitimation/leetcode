@@ -1,0 +1,26 @@
+def solution(priorities, location):
+    stack = []
+    new_p = [(v,i) for i,v in enumerate(priorities)]
+    while len(new_p) != 0:
+        if new_p[0] < max(new_p, key = lambda x : x[0]):
+            new_p.append(new_p[0])
+            new_p.pop(0)
+        else:
+            stack.append(new_p[0])
+            new_p.pop(0)
+    for i in range(len(stack)):
+        if (stack[i][1] == location):
+            return i + 1
+            
+# using queue any 함수의 존재 및 사용 가능성 --> 
+def solution(priorities, location):
+    queue =  [(i,p) for i,p in enumerate(priorities)]
+    answer = 0
+    while True:
+        cur = queue.pop(0)
+        if any(cur[1] < q[1] for q in queue):
+            queue.append(cur)
+        else:
+            answer += 1
+            if cur[0] == location:
+                return answer
