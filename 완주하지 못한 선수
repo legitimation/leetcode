@@ -1,0 +1,14 @@
+def solution(participant, completion):
+    map = {}
+    for e in participant:
+        if e in map:
+            map[e] += 1
+        else:
+            map[e] = 1
+    for e in completion:
+        map[e] -= 1
+        if map[e] == 0:
+            map.pop(e, None) #del map['key'] also possible if key is guaranteed inside the hashmap, whereas pop returns None if there isnt a key inside the map
+    for key, val in map.items():
+        if val == 1:
+            return key
