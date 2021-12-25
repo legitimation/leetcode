@@ -1,0 +1,22 @@
+def solution(clothes):
+    dic = {}
+    for e in clothes:
+        if e[1] in dic:
+            dic[e[1]] += 1
+        else:
+            dic[e[1]] = 1
+    count = 1
+    for keys in dic:
+        count *= dic[keys]+1
+    return count - 1
+    
+    
+others: using lambda func, reduce
+
+def solution(clothes):
+    from collections import Counter
+    from functools import reduce
+    cnt = Counter([kind for name, kind in clothes])
+    answer = reduce(lambda x, y: x*(y+1), cnt.values(), 1) - 1
+    return answer
+    
