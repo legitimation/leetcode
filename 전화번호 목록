@@ -1,0 +1,35 @@
+Trial 1 : Too slow, sub_optimal 
+
+def solution(phone_book):
+    phone_book = sorted(phone_book)
+    hashmap = {}
+    if len(phone_book) == 1:
+        return True
+    for e in phone_book:
+        for keys in hashmap.keys():
+            A = min(keys, e, key = len)
+            B = max(keys, e, key = len)
+            if A == B[:len(A)] and A != B:
+                return False
+        hashmap[e] = 1
+    return True
+    
+Trial 2: Optimal
+
+def solution(phone_book):
+    phone_book = sorted(phone_book) 
+    for i, number in enumerate(phone_book):
+        if(i < len(phone_book)-1 and number == phone_book[i + 1][:len(number)]):
+                return False
+    return True
+    
+
+Others
+
+def solution(phoneBook):
+    phoneBook = sorted(phoneBook)
+
+    for p1, p2 in zip(phoneBook, phoneBook[1:]):
+        if p2.startswith(p1):
+            return False
+    return True
